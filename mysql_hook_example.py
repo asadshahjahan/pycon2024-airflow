@@ -15,14 +15,14 @@ default_args = {
 dag = DAG('example_hooks_dag', default_args=default_args, schedule_interval=None)
 
 
-# Function to execute SQL query using PostgresHook
+# Function to execute SQL query using MySqlHook
 def execute_sql_query():
-    # Instantiate the PostgresHook
-    mysql_hook = MySqlHook(mysql_conn_id='my_mysql_connection')
-    # Assuming you have defined a connection named 'my_postgres_connection' in Airflow UI
+    # Instantiate the MySqlHook
+    mysql_hook = MySqlHook(mysql_conn_id='local_mysql')
+    # Assuming you have defined a connection named 'my_mysql_connection' in Airflow UI
 
     # Define the SQL query
-    sql_query = "SELECT * FROM my_table;"
+    sql_query = "SELECT * FROM pycon_db_1.weather_data;"
 
     # Execute the SQL query
     result = mysql_hook.get_records(sql_query)
